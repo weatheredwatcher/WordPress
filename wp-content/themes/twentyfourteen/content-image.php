@@ -43,7 +43,12 @@
 
 	<div class="entry-content">
 		<?php
-			the_content();
+			/* translators: %s: Name of current post */
+			the_content( sprintf(
+				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'twentyfourteen' ),
+				the_title( '<span class="screen-reader-text">', '</span>', false )
+			) );
+
 			wp_link_pages( array(
 				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfourteen' ) . '</span>',
 				'after'       => '</div>',
@@ -53,11 +58,5 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<?php if ( has_tag() ) : ?>
-	<footer class="entry-meta">
-		<span class="tag-links">
-			<?php echo get_the_tag_list(); ?>
-		</span>
-	</footer><!-- .entry-meta -->
-	<?php endif; ?>
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
 </article><!-- #post-## -->
